@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'inc/_messages.html' %}
+<form action="" method="post" class="signup-form-content">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button class="button-85" type="submit">Submit</button>
+    <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
+</form>
+{% endblock content %}

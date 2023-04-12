@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load category_tag %}
+{% block content %}
+
+{% get_comment post.title as comments %}
+<div class="full-detailed-content">
+<div class="post-detailed-content">
+<h1 class="post-title mb-3">{{post.title}}</h1>
+{% if post.photo %}
+<img src="{{post.photo.url}}" width="40%" class="post-photo">
+{% endif %}
+<h2 class="post-content">{{post.content|linebreaks}}</h2>
+</div>
+<h3 class="post-date">{{post.created_at}}</h3>
+<!-- <h4 class="post-created-by">Username: {{post.user.username}}</h4> -->
+
+{% if request.user.is_authenticated %}
+<div class="create-comment">
+    <p>Your username: {{request.user.username|title}} </p>
+<form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="button-85" type="submit">Submit</button>
+        <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+    </script>
+    </form>
+    </div>
+{% endif %}
+<div class="comment-section">
+    {% if comments %}
+    {% for item in comments %}
+    <div class="card mb-3">
+      <b>  <p class="comment-username">{{item.user.username|title}}</p> </b>
+  <div class="card-body">
+    <p class="comment-content-section">{{item.content|capfirst}}</p>
+    <p class="comment-created-at"> {{item.created_at|date:'d F Y'}} </p>
+  </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+</div>
+{% endblock content %}

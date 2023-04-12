@@ -1,0 +1,23 @@
+{% load category_tag %}
+{% get_categories as category %}
+
+<aside class="sidebar">
+<div class="btn-group-horizontal" role="group" aria-label="Vertical button group">
+  <button type="button" class="btn btn-dark" onclick="location.href='{% url 'start_page' %}'">All feed</button>
+  {% for item in category %}
+  <!-- <button type="button" class="btn btn-dark" onclick="window.open('{{item.get_absolute_url}}')"> {{item.title}} </button> -->
+  <button type="button" class="btn btn-dark" onclick="location.href='{{item.get_absolute_url}}'"> {{item.title}} </button>
+    {% endfor %}
+</div>
+</aside>
+
+
+<aside class="sidebar-mobile">
+<div class="btn-group-horizontal" role="group" aria-label="Vertical button group">
+  <button type="button" class="btn btn-dark" onclick="location.href='{% url 'start_page' %}'">All feed</button>
+  {% for item in category %}
+  <!-- <button type="button" class="btn btn-dark" onclick="window.open('{{item.get_absolute_url}}')"> {{item.title}} </button> -->
+  <button type="button" class="btn btn-dark" onclick="location.href='{{item.get_absolute_url}}'"> {{item.title}} </button>
+    {% endfor %}
+</div>
+</aside>

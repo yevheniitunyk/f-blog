@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<div class="content-container">
+<form action="" method="post" class="add-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="button-85" type="submit">Confirm</button>
+</form>
+</div>
+{% else %}
+<h1 class="not-allowed">Sorry, but unregistered users are not allowed to add new posts or comments. <br><br><br> Please <a href="{% url 'login_user' %}">login</a> or <a href="{% url 'signup_user' %}">sign up</a>.</h1>
+{% endif %}
+{% endblock content %}
